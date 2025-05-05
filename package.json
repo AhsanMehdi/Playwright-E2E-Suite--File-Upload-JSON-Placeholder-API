@@ -1,0 +1,22 @@
+{
+  "name": "take-home-assessment",
+  "version": "1.0.0",
+  "description": "home assessment to test the UI and APIs",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AhsanMehdi/take-home-assessment.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AhsanMehdi/take-home-assessment/issues"
+  },
+  "homepage": "https://github.com/AhsanMehdi/take-home-assessment#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.52.0",
+    "@types/node": "^22.15.3"
+  }
+}
