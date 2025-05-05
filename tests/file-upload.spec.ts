@@ -22,11 +22,11 @@ test('user should be able to upload a pdf file with 19kb size', async () => {
   console.log('Current Directory:', current_dir);
 
   // designing the file path
-  const filePath = path.join(current_dir, 'tests', 'Sample Data Files', 'PDF File Size-19KB.pdf');
-  console.log('File Path:', filePath);
+  const file_path = path.join(current_dir, 'tests', 'Sample Data Files', 'PDF File Size-19KB.pdf');
+  console.log('File Path:', file_path);
 
   // upload  file
-  await website.locator('#file-upload').setInputFiles(filePath);
+  await website.locator('#file-upload').setInputFiles(file_path);
 
   // Click  upload button
   await website.locator("//input[@value='Upload']").click();
@@ -48,11 +48,11 @@ test('user should be able to upload a word file with 14kb size', async () => {
   console.log('Current Directory:', current_dir);
 
   // Assuming "tests" is the root folder, adjust file path accordingly
-  const filePath = path.join(current_dir, 'tests', 'Sample Data Files', 'Word File Size-14KB.docx');
-  console.log('File Path:', filePath);
+  const file_path = path.join(current_dir, 'tests', 'Sample Data Files', 'Word File Size-14KB.docx');
+  console.log('File Path:', file_path);
 
   // Step 3: Upload the file
-  await website.locator('#file-upload').setInputFiles(filePath);
+  await website.locator('#file-upload').setInputFiles(file_path);
 
   // Step 4: Click the upload button
   await website.locator("//input[@value='Upload']").click();
@@ -62,4 +62,79 @@ test('user should be able to upload a word file with 14kb size', async () => {
 
 });
 
+/*
+ TC03
+*/
+test ('user should be able to upload a jpg file of size 0.98MB', async () => {
+  // user should be on the website url
+  await expect(website.locator("//h3[contains(text(),'File Uploader')]")).toHaveText('File Uploader');
+
+  // current directory and the path
+  const current_dir = process.cwd();
+  console.log('Current Directory:', current_dir);
+
+  // designing the file path
+  const file_path = path.join(current_dir, 'tests', 'Sample Data Files', 'Image file _.098 MB.jpg');
+  console.log('File Path:', file_path);
+
+  // upload  file
+  await website.locator('#file-upload').setInputFiles(file_path);
+
+  // Click  upload button
+  await website.locator("//input[@value='Upload']").click();
+
+  // Add the assertion
+  await expect(website.locator('#uploaded-files')).toHaveText('Image file _.098 MB.jpg');
+});
+
+
+/*
+ TC04
+*/
+test ('user should be able to upload a MP4 file of size 13 MB', async () => {
+  // user should be on the website url
+  await expect(website.locator("//h3[contains(text(),'File Uploader')]")).toHaveText('File Uploader');
+
+  // current directory and the path
+  const current_dir = process.cwd();
+  console.log('Current Directory:', current_dir);
+
+  // designing the file path
+  const file_path = path.join(current_dir, 'tests', 'Sample Data Files', 'MP4 file Size-13MB.mp4');
+  console.log('File Path:', file_path);
+
+  // upload  file
+  await website.locator('#file-upload').setInputFiles(file_path);
+
+  // Click  upload button
+  await website.locator("//input[@value='Upload']").click();
+
+  // Add the assertion
+  await expect(website.locator('#uploaded-files')).toHaveText('MP4 file Size-13MB.mp4');
+});
+
+/*
+ TC05
+*/
+test ('user should be able to upload an excel file of size 10 KB', async () => {
+  // user should be on the website url
+  await expect(website.locator("//h3[contains(text(),'File Uploader')]")).toHaveText('File Uploader');
+
+  // current directory and the path
+  const current_dir = process.cwd();
+  console.log('Current Directory:', current_dir);
+
+  // designing the file path
+  const file_path = path.join(current_dir, 'tests', 'Sample Data Files', 'Excel.xlsx');
+  console.log('File Path:', file_path);
+
+  // upload  file
+  await website.locator('#file-upload').setInputFiles(file_path);
+
+  // Click  upload button
+  await website.locator("//input[@value='Upload']").click();
+
+  // Add the assertion
+  await expect(website.locator('#uploaded-files')).toHaveText('Excel.xlsx');
+});
 
