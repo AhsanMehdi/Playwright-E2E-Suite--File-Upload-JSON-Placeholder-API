@@ -36,4 +36,30 @@ test('user should be able to upload a pdf file with 19kb size', async () => {
 });
 
 
+/*
+TC002
+*/
+test('user should be able to upload a word file with 14kb size', async () => {
+  // Verify the expected page has loaded
+  await expect(website.locator("//h3[contains(text(),'File Uploader')]")).toHaveText('File Uploader');
+
+  // Find the current directory and design the file path
+  const current_dir = process.cwd();
+  console.log('Current Directory:', current_dir);
+
+  // Assuming "tests" is the root folder, adjust file path accordingly
+  const filePath = path.join(current_dir, 'tests', 'Sample Data Files', 'Word File Size-14KB.docx');
+  console.log('File Path:', filePath);
+
+  // Step 3: Upload the file
+  await website.locator('#file-upload').setInputFiles(filePath);
+
+  // Step 4: Click the upload button
+  await website.locator("//input[@value='Upload']").click();
+
+  // Optionally: Add some verification after the upload
+  await expect(website.locator('#uploaded-files')).toHaveText('Word File Size-14KB.docx');
+
+});
+
 
