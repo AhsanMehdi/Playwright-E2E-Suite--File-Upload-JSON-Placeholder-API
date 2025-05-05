@@ -1,48 +1,39 @@
-// import { test, expect } from '@playwright/test';
+import { test, expect } from '@playwright/test';
+import path from 'path';
 
-// test('has title', async ({ page }) => {
-//   await page.goto('https://playwright.dev/');
+let website;
 
-//   // Expect a title "to contain" a substring.
-//   await expect(page).toHaveTitle(/Playwright/);
-// });
-
-// test('get started link', async ({ page }) => {
-//   await page.goto('https://playwright.dev/');
-
-//   // Click the get started link.
-//   await page.getByRole('link', { name: 'Get started' }).click();
-
-//   // Expects page to have a heading with the name of Installation.
-//   await expect(page.getByRole('heading', { name: 'Installation' })).toBeVisible();
-// });
-
-/**
- Import the playwright modules
-  1- playwright
-  2- path for file name 
- */
-import { test , expect }  from '@playwright/test'
-import Path from 'path'
-
-let website
-
-// before every test open the website url
-test.beforeAll(async ({ browser }) => {
+// before every test open the website URL
+test.beforeEach(async ({ browser }) => {
   const context = await browser.newContext();
   website = await context.newPage();
-  await website.goto('https://the-internet.herokuapp.com/upload')
-
+  await website.goto('https://the-internet.herokuapp.com/upload');
 });
 
 /*
-  - TC001 
+TC001
 */
-test ('user should be able to upload a pdf file with 19kb size' , async () => {
-  await expect (website.locator("//h3[contains(text(),'File Uploader')]")).toHaveText('File Uploader');
+test('user should be able to upload a pdf file with 19kb size', async () => {
+  // user should be on the website url
+  await expect(website.locator("//h3[contains(text(),'File Uploader')]")).toHaveText('File Uploader');
 
-  
+  // current directory and the path
+  const current_dir = process.cwd();
+  console.log('Current Directory:', current_dir);
 
-})
+  // designing the file path
+  const filePath = path.join(current_dir, 'tests', 'Sample Data Files', 'PDF File Size-19KB.pdf');
+  console.log('File Path:', filePath);
+
+  // upload  file
+  await website.locator('#file-upload').setInputFiles(filePath);
+
+  // Click  upload button
+  await website.locator("//input[@value='Upload']").click();
+
+  // Add the assertion
+  await expect(website.locator('#uploaded-files')).toHaveText('PDF File Size-19KB.pdf');
+});
+
 
 
