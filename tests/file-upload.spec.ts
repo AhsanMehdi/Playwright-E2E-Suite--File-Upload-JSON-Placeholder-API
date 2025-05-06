@@ -221,22 +221,38 @@ test ('user should be able to upload a file having 255 chars in file name includ
   const file_path = path.join(current_dir, 'tests', 'Sample Data Files');
   // generate a random string
   const long_string = random_string_gen(251);
+  // now make the file name
   const new_filename = `${long_string}.txt`;
-
+  // add the path with already existing file
   const old_file = path.join(file_path, 'Random.txt');
+  // now desing the new file name
   const new_file = path.join(file_path, new_filename);
-
   // Rename the file
   await fs.rename(old_file, new_file);
-
   console.log(`Renamed file to: ${new_file}`);
-
   // upload  file
   await website.locator('#file-upload').setInputFiles(new_file);
-
   // Click  upload button
   await website.locator("//input[@value='Upload']").click();
-
   // Add the assertion
   await expect(website.locator('#uploaded-files')).toHaveText(new_filename);
+});
+
+
+/*
+ TC12
+*/
+test ('user should be able to upload a file having special characters in file name', async () => {
+  // user should be on the website url
+  await expect(website.locator("//h3[contains(text(),'File Uploader')]")).toHaveText('File Uploader');
+  // current directory and the path
+  const current_dir = process.cwd();
+  // designing the file path
+  const file_path = path.join(current_dir, 'tests', 'Sample Data Files', 'Special chars vr@#$%;.txt');
+  // upload  file
+  await website.locator('#file-upload').setInputFiles(file_path);
+  // Click  upload button
+  await website.locator("//input[@value='Upload']").click();
+  // Add the assertion
+  await expect(website.locator('#uploaded-files')).toHaveText('Special chars vr@#$%;.txt');
 });
