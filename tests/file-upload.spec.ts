@@ -189,3 +189,61 @@ test ('user should be able to upload a TXT file of size 0 KB', async () => {
   // Add the assertion
   await expect(website.locator('#uploaded-files')).toHaveText('Empty File.txt');
 });
+
+
+/*
+ TC08
+*/
+test ('user should be able to upload a dot exe file', async () => {
+  // user should be on the website url
+  await expect(website.locator("//h3[contains(text(),'File Uploader')]")).toHaveText('File Uploader');
+
+  // current directory and the path
+  const current_dir = process.cwd();
+  console.log('Current Directory:', current_dir);
+
+  // designing the file path
+  const file_path = path.join(current_dir, 'tests', 'Sample Data Files', 'Dot EXE.exe');
+  console.log('File Path:', file_path);
+
+  // upload  file
+  await website.locator('#file-upload').setInputFiles(file_path);
+
+  // Click  upload button
+  await website.locator("//input[@value='Upload']").click();
+
+  // Add the assertion
+  await expect(website.locator('#uploaded-files')).toHaveText('Dot EXE.exe');
+});
+
+
+
+/*
+ TC09
+*/
+test ('user should be able to upload a large file of size 70MB', async () => {
+  // user should be on the website url
+  await expect(website.locator("//h3[contains(text(),'File Uploader')]")).toHaveText('File Uploader');
+
+  // current directory and the path
+  const current_dir = process.cwd();
+  console.log('Current Directory:', current_dir);
+
+  // designing the file path
+  const file_path = path.join(current_dir, 'tests', 'Sample Data Files', 'Large File 70MB.mp4');
+  console.log('File Path:', file_path);
+
+  // upload  file
+  await website.locator('#file-upload').setInputFiles(file_path);
+
+  // Click  upload button
+  await website.locator("//input[@value='Upload']").click();
+
+  // Add the assertion
+  await expect(website.locator('#uploaded-files')).toHaveText('Large File 70MB.mp4');
+});
+
+
+
+
+
