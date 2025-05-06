@@ -272,3 +272,21 @@ test('user should not be able to upload a file without attaching a file', async 
     throw new Error('Application crashed with 500 error when no file was selected');
   }
 });
+
+/*
+ TC14
+*/
+test('verify that if user upload a file with trailing spaces then app should remove and upload that file', async () => {
+  // user should be on the website url
+  await expect(website.locator("//h3[contains(text(),'File Uploader')]")).toHaveText('File Uploader');
+  // current directory and the path
+  const current_dir = process.cwd();
+  // designing the file path
+  const file_path = path.join(current_dir, 'tests', 'Sample Data Files', 'Trailing Spaces                      .txt');
+  // upload  file
+  await website.locator('#file-upload').setInputFiles(file_path);
+  // Click  upload button
+  await website.locator("//input[@value='Upload']").click();
+  // Add the assertion
+  await expect(website.locator('#uploaded-files')).toHaveText('Trailing Spaces.txt');
+});
