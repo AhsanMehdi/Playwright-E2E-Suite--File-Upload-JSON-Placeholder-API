@@ -3,6 +3,7 @@ home assessment to test the UI and APIs
 
 1 - for playwright it is required to install the node js so, first install that 
     -   Go to https://nodejs.org and download the LTS version.
+    -   after download install the node js
     
 2 - now install the playwright using following command 
     -   npm init playwright@latest
@@ -12,8 +13,8 @@ home assessment to test the UI and APIs
 
 4 - to run please execute the command inside the root directory
     - npx playwright test
-    note: as 2 retries are implemented so, it will retry the tests with chromium, firefox, and webkit and the html 
-    report will be opened into your default browser automatically once the execution done
+        note: as 2 retries are implemented so, it will retry the tests with chromium, firefox, and webkit and the html 
+        report will be opened into your default browser automatically once the execution done
 Optional:
 5 - for UI mode you can use the below command
     -   npx playwright test --ui
