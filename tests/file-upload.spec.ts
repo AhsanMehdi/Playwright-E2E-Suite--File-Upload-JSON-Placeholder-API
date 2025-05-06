@@ -257,14 +257,18 @@ test ('user should be able to upload a file having special characters in file na
   await expect(website.locator('#uploaded-files')).toHaveText('Special chars vr@#$%;.txt');
 });
 
+
 /*
- TC13-failure case should be passed on the basis of assertion
+ TC13
 */
-test ('user should not be able to upload a file without attaching a file', async () => {
+test('user should not be able to upload a file without attaching a file', async () => {
   // user should be on the website url
   await expect(website.locator("//h3[contains(text(),'File Uploader')]")).toHaveText('File Uploader');
-  // Click  upload button
+  // Click on upload without selecting a file
   await website.locator("//input[@value='Upload']").click();
-  // the element after success upload should not be visible
-  await expect(website.locator('#uploaded-files')).not.toBeVisible();
+  // extract the error from locator
+  const errorText = await website.locator('body').innerText();
+  if (errorText.includes('Internal Server Error') || errorText.includes('500')) {
+    throw new Error('Application crashed with 500 error when no file was selected');
+  }
 });
