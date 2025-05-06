@@ -1,6 +1,13 @@
+/*
+-- import required dependencies
+*/
 import { test, expect } from '@playwright/test';
 import path from 'path';
-
+/*
+-- import the custome utility function to generate the random string
+*/
+import {random_string_gen} from '../utils/dynamic_data_gen'
+// website variable to call the 
 let website;
 
 // before every test open the website URL
@@ -245,5 +252,28 @@ test ('user should be able to upload a large file of size 70MB', async () => {
 
 
 
+/*
+ TC10
+*/
+test ('user should be able to upload a Zip file', async () => {
+  // user should be on the website url
+  await expect(website.locator("//h3[contains(text(),'File Uploader')]")).toHaveText('File Uploader');
 
+  // current directory and the path
+  const current_dir = process.cwd();
+  console.log('Current Directory:', current_dir);
+
+  // designing the file path
+  const file_path = path.join(current_dir, 'tests', 'Sample Data Files', 'ZIP FILE.zip');
+  console.log('File Path:', file_path);
+
+  // upload  file
+  await website.locator('#file-upload').setInputFiles(file_path);
+
+  // Click  upload button
+  await website.locator("//input[@value='Upload']").click();
+
+  // Add the assertion
+  await expect(website.locator('#uploaded-files')).toHaveText('ZIP FILE.zip');
+});
 
