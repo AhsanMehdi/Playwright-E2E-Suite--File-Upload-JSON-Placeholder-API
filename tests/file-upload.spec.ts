@@ -256,3 +256,15 @@ test ('user should be able to upload a file having special characters in file na
   // Add the assertion
   await expect(website.locator('#uploaded-files')).toHaveText('Special chars vr@#$%;.txt');
 });
+
+/*
+ TC13-failure case should be passed on the basis of assertion
+*/
+test ('user should not be able to upload a file without attaching a file', async () => {
+  // user should be on the website url
+  await expect(website.locator("//h3[contains(text(),'File Uploader')]")).toHaveText('File Uploader');
+  // Click  upload button
+  await website.locator("//input[@value='Upload']").click();
+  // the element after success upload should not be visible
+  await expect(website.locator('#uploaded-files')).not.toBeVisible();
+});
