@@ -7,7 +7,7 @@ import {test, expect, request} from '@playwright/test'
 const   base_url = 'https://jsonplaceholder.typicode.com'
 
 /*
--   suite to test the "Get/posts"
+-   suite to test the "Delete/post/byid"
 */
 
 test.describe('delete /posts/{id} ', () => {
