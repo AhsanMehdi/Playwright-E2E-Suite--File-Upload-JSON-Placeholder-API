@@ -1,27 +1,60 @@
 # take-home-assessment
 home assessment to test the UI and APIs
- *******************            Part 1: UI Tests             ************************
+
+--installation
+
 1 - for playwright it is required to install the node js so, first install that 
+
     -   Go to https://nodejs.org and download the LTS version.
+
     -   after download install the node js
+
     
 2 - now install the playwright using following command 
+
     -   npm init playwright@latest
+
     -   after that select language, test folder, allow to install browsers
 
-3 - go to the test folder and ->Sample Data Files and then rename the file having 255 chars total length to "Random.txt"
+ *******************            Part 1: UI Tests             ************************
 
-4 - to run please execute the command inside the root directory
+----    headless mode
+1 - go to the test folder and ->Sample Data Files and then rename the file having 255 chars total length to "Random.txt"
+
+2 - to run please execute the command inside the root directory
+
     - npx playwright test tests/file-upload.spec.ts
+
         note: as 2 retries are implemented so, it will retry the tests with chromium, firefox, and webkit and the html 
         report will be opened into your default browser automatically once the execution done
-Optional:
-5 - for UI mode you can use the below command
+
+----    UI mode
+1 - for UI mode you can use the below command
     -   npx playwright test tests/file-upload.spec.ts --ui
+
     note:   but here you have to run tests manually by clicking on the button of run
-6 - for UI mode if you want to see the report in browser use the command below:
+
+2 - for UI mode if you want to see the report in browser use the command below:
     -   npx playwright show-report
 
 
         
  *******************            Part 2: API Tests             ************************
+->  to run all api tests you can execute the below command:
+
+    ->  npx playwright tests api_tests  
+
+->  to run each api individually you have to execute below commands
+
+    Get ->    npx playwright test tests/api_tests/get-posts.spec.ts 
+
+    Post ->     npx playwright test tests/api_tests/post-posts.spec.ts 
+
+    Put/Patch ->      npx playwright test tests/api_tests/put-patch-posts.spec.ts 
+
+    Delete ->       npx playwright test tests/api_tests/delete-posts-id.spec.ts 
+
+->      Report    -for report execute the below command:
+
+         npx playwright show-report
+
