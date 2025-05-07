@@ -58,3 +58,9 @@ home assessment to test the UI and APIs
 
          npx playwright show-report
 
+
+************************           All in one RUN        ******************
+IF you want to run all tests then run the command below:
+
+   headless mode ->      npx playwright test
+   headless mode ->      npx playwright test --ui
