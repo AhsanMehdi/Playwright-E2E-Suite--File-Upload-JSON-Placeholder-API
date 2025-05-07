@@ -64,3 +64,13 @@ IF you want to run all tests then run the command below:
 
    headless mode ->      npx playwright test
    headless mode ->      npx playwright test --ui
+
+
+
+
+   API notes:
+
+   Delete: 
+            please note that for delete posts by id I have used the 404 for expected response as I am considering as actual api behavior
+
+            but for json as fake it returns 200 in every case (in delete suite) 
