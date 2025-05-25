@@ -1,4 +1,4 @@
-# take-home-assessment
+# Playwright-E2E-Suite--File-Upload-JSON-Placeholder-API
 home assessment to test the UI and APIs
 
 --installation
